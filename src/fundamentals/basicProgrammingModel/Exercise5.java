@@ -12,7 +12,7 @@ public class Exercise5 {
         isBetween0and1(0.02, 0);
     }
 
-    static void isBetween0and1(double x, double y) {
+    private static void isBetween0and1(double x, double y) {
         System.out.println(x > 0 && x < 1 && y > 0 && y < 1);
     }
 }
