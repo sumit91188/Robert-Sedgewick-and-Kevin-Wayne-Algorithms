@@ -35,8 +35,12 @@ public class Exercise22 {
         int depth = 0;
 
         while (lowerBound <= upperBound) {
-            depth++;
-            System.out.println("Lo: " + lowerBound + "\thi: " + upperBound + "\tdepth: " + depth);
+            int indentation = depth;
+            while (indentation > 0) {
+                System.out.print(" ");
+                indentation--;
+            }
+            System.out.println("Lo: " + lowerBound + " - hi: " + upperBound);
             mid = (lowerBound + upperBound) / 2;
             if (key < a[mid]) {
                 upperBound = mid - 1;
@@ -47,6 +51,7 @@ public class Exercise22 {
             else {
                 return mid;
             }
+            depth++;
         }
 
         return -1;
