@@ -14,12 +14,10 @@ public class Exercise37 {
         try {
             m = Integer.parseInt(args[0].trim());
             n = Integer.parseInt(args[1].trim());
-        }
-        catch (NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: Input needs to be integer.");
             nfe.printStackTrace();
-        }
-        catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+        } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
             System.out.println("ArrayIndexOutOfBoundsException: Needs two int inputs");
             arrayIndexOutOfBoundsException.printStackTrace();
         }
@@ -46,11 +44,9 @@ public class Exercise37 {
         }
     }
 
-    private static void shuffle(double[] a)
-    {
+    private static void shuffle(double[] a) {
         int N = a.length;
-        for (int i = 0; i < N; i++)
-        { // Exchange a[i] with random element in a[i..N-1]
+        for (int i = 0; i < N; i++) { // Exchange a[i] with random element in a[i..N-1]
             int r = StdRandom.uniform(N);
             double temp = a[i];
             a[i] = a[r];
