@@ -51,12 +51,12 @@ public class Exercise1 {
             }
         }
         System.out.printf("The distance separating the closest pair of points " + pointsString +
-                "is %.3f\n", shortestDistance);
+                " is %.3f\n", shortestDistance);
     }
 
     private static void drawChart(Point2D[] point2DS) {
 
-        StdDraw.setCanvasSize(1024, 512);
+        StdDraw.setCanvasSize(512, 512);
         StdDraw.setPenRadius(.015);
         StdDraw.setXscale(0, 1);
         StdDraw.setYscale(0, 1);
