@@ -17,10 +17,12 @@ public class Exercise1 {
         catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: Input needs to be integer.");
             nfe.printStackTrace();
+            System.exit(0);
         }
         catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
             System.out.println("ArrayIndexOutOfBoundsException: Needs an int input");
             arrayIndexOutOfBoundsException.printStackTrace();
+            System.exit(0);
         }
 
         Point2D[] point2DS = new Point2D[nElem];
