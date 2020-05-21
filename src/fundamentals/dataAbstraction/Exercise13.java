@@ -28,18 +28,6 @@ public class Exercise13 {
             this.amount = amount;
         }
 
-        public String getWho() {
-            return who;
-        }
-
-        public Date getWhen() {
-            return when;
-        }
-
-        public double getAmount() {
-            return amount;
-        }
-
         public String toString() {
             return "Transaction{" +
                     "who='" + who + '\'' +
