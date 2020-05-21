@@ -1,19 +1,26 @@
 package fundamentals.dataAbstraction;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * @author Sumit Deo
  */
-public class Exercise11 {
+public class Exercise12 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
+        SmartDate date = null;
         try {
-            System.out.println(new SmartDate(4, 18, 1989).toString());
-            System.out.println(new SmartDate(2, 30, 2016).toString());
+            date = new SmartDate(9, 11, 1988);
         }
         catch (RuntimeException e) {
             e.printStackTrace();
         }
+
+        System.out.println("It's " + date.dayOfTheWeek() + " on " + date.toString());
     }
 
     static class SmartDate {
@@ -61,6 +68,14 @@ public class Exercise11 {
                 isValidDate = false;
             }
             return isValidDate;
+        }
+
+        private String dayOfTheWeek() throws ParseException {
+
+            String dateString = String.format("%d-%d-%d", year(), month(), day());
+            Date date = new SimpleDateFormat("yyyy-M-d").parse(dateString);
+            String dayOfWeek = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
+            return dayOfWeek;
         }
     }
 }
