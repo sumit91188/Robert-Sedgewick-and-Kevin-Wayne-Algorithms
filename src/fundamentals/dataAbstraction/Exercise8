@@ -1,0 +1,2 @@
+It swaps them. It could hardly be more efficient because it does so by copying
+references, so that it is not necessary to copy millions of elements.
