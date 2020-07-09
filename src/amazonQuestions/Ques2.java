@@ -1,9 +1,11 @@
+package amazonQuestions;
+
 import java.util.*;
 
 /**
  * @author Sumit Deo
  */
-public class TestTemplate2 {
+public class Ques2 {
 
     public static void main(String[] args) {
         int numToys = 6;
