@@ -4,60 +4,48 @@ import java.util.Iterator;
 
 /**
  * @author Sumit Deo
+ * @Date 7/26/20
+ * @Project Robert-Sedgewick-and-Kevin-Wayne-Algorithms
+ * @Comments Write a method max() that takes a reference to the first node in a linked list as
+ * argument and returns the value of the maximum key in the list. Assume that all keys are
+ * positive integers, and return 0 if the list is empty.
  */
-public class Exercise26 {
+public class Exercise27 {
 
     public static void main(String[] args) {
 
-        LinkedList<String> linkedList = new LinkedList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
 
-        linkedList.add("1");
-        linkedList.add("1");
-        linkedList.add("2");
-        linkedList.add("3");
-        linkedList.add("1");
-        linkedList.add("1");
-        linkedList.add("1");
-        linkedList.add("1");
+        linkedList.add(10);
+        linkedList.add(90);
+        linkedList.add(20);
+        linkedList.add(30);
+        linkedList.add(60);
+        linkedList.add(80);
+        linkedList.add(40);
 
-        for (String num : linkedList) {
-            System.out.println(num);
-        }
-
-        remove(linkedList, "1");
-        for (String num : linkedList) {
-            System.out.println(num);
-        }
+        System.out.println("The value of maximum key in the list is " + linkedList.max());
     }
-
-    private static void remove(LinkedList<String> linkedList, String toRemoveStr) {
-        if (linkedList.isEmpty() || toRemoveStr == null) {
-            return;
-        }
-
-        while (!linkedList.isEmpty() && linkedList.head.data.equals(toRemoveStr)) {
-            linkedList.head = linkedList.head.nextNode;
-            linkedList.numElms--;
-        }
-
-        LinkedList.Node<String> previousNode = linkedList.head;
-
-        for (LinkedList.Node<String> node = linkedList.head; node != null; node = node.nextNode) {
-
-            if (node.data.equals(toRemoveStr)) {
-                previousNode.nextNode = node.nextNode;
-                linkedList.numElms--;
-            }
-            else {
-                previousNode = node;
-            }
-        }
-    }
-
+    
     private static class LinkedList<T> implements Iterable<T> {
 
         private int numElms;
         private Node<T> head;
+
+        public int max() {
+            if (isEmpty()) {
+                return 0;
+            }
+
+            int maxValue = (int) head.data;
+
+            for (Node node = head.nextNode; node != null; node = node.nextNode) {
+                if ((int)node.data > maxValue) {
+                    maxValue = (int) node.data;
+                }
+            }
+            return maxValue;
+        }
 
         private static class Node<T> {
             T data;
