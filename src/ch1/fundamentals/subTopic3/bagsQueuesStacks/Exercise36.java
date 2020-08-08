@@ -2,28 +2,16 @@ package ch1.fundamentals.subTopic3.bagsQueuesStacks;
 
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Iterator;
+
 /**
  * @author Sumit Deo
  * @Date 8/6/20
  * @Project Robert-Sedgewick-and-Kevin-Wayne-Algorithms
- * @Comments Random queue. A random queue stores a collection of items and supports the
- * following API:
- * public class RandomQueue<Item>
- * RandomQueue() create an empty random queue
- * boolean isEmpty() is the queue empty?
- * void enqueue(Item item) add an item
- * Item dequeue() remove and return a random item
- * (sample without replacement)
- * Item sample() return a random item, but do not remove
- * (sample with replacement)
- * API for a generic random queue
- * Write a class RandomQueue that implements this API. Hint : Use an array representation
- * (with resizing). To remove an item, swap one at a random position (indexed 0 through
- * N-1) with the one at the last position (index N-1). Then delete and return the last object,
- * as in ResizingArrayStack. Write a client that deals bridge hands (13 cards each)
- * using RandomQueue<Card>.
+ * @Comments Random iterator. Write an iterator for RandomQueue<Item> from the previous
+ * exercise that returns the items in random order.
  */
-public class Exercise35 {
+public class Exercise36 {
 
     public static void main(String[] args) {
         RandomQueue<Integer> randomQueue = new RandomQueue();
@@ -37,7 +25,7 @@ public class Exercise35 {
         System.out.println(randomQueue.deQueue());
     }
 
-    private static class RandomQueue<T> {
+    private static class RandomQueue<T> implements Iterable<T> {
         int maxNumElms = 1;
         int numElms;
         T[] array;
@@ -83,6 +71,42 @@ public class Exercise35 {
             int randomIndex = StdRandom.uniform(0, numElms - 1);
             T elm = array[randomIndex];
             return elm;
+        }
+
+        @Override
+        public Iterator<T> iterator() {
+            return new RandomQueueIterator();
+        }
+
+        private class RandomQueueIterator implements Iterator<T> {
+
+            T[] arrayCopy;
+            int iteratorIndex;
+
+            public RandomQueueIterator() {
+                iteratorIndex = numElms;
+                arrayCopy = (T[]) new Object[numElms];
+                sortArrayCopy();
+            }
+
+            private void sortArrayCopy() {
+                for (int i = 0; i < numElms; i++) {
+                    int randomIndex = StdRandom.uniform(0, numElms - 1);
+                    T temp = arrayCopy[i];
+                    arrayCopy[i] = arrayCopy[randomIndex];
+                    arrayCopy[randomIndex] = temp;
+                }
+            }
+
+            @Override
+            public boolean hasNext() {
+                return iteratorIndex != 0;
+            }
+
+            @Override
+            public T next() {
+                return (T) arrayCopy[--iteratorIndex];
+            }
         }
     }
 }
