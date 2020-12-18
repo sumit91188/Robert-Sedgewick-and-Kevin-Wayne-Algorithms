@@ -13,7 +13,7 @@ public class Exercise7 {
         //a)
         while (Math.abs(t - 9.0/t) > .001)
             t = (9.0/t + t) / 2.0;
-        System.out.println(t);
+        System.out.printf("%.5f\n", t);
 
         //b)
         for (int i = 1; i < 1000; i++)
