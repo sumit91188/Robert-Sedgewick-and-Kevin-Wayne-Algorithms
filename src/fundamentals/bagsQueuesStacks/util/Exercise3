@@ -1,0 +1,2 @@
+Following sequence cannot occur, as after 8, 1 is returned whereas last inserted value should be 7.
+f. 0 4 6 5 3 8 1 7 2 9
