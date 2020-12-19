@@ -31,7 +31,7 @@ public class Exercise10 {
       } else if (ch.equals(")")) {
         String operandRight = operands.pop();
         String operandLeft = operands.pop();
-        String postFixExp = operandLeft + operandRight + operators.pop();
+        String postFixExp = operandLeft + " " + operandRight + " " + operators.pop();
         operands.push(postFixExp);
       } else {
         operands.push(ch);
