@@ -29,7 +29,6 @@ public class Exercise9 {
 
     for (String ch : chars) {
       if (ch.equals("(")) {
-        continue;
       } else if (ch.equals("+") || ch.equals("-") || ch.equals("*") || ch.equals("/")) {
         operators.push(ch);
       } else if (ch.equals(")")) {
