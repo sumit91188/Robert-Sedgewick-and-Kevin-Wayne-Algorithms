@@ -21,7 +21,7 @@ public class Exercise6 {
     q.enqueue("e");
     q.enqueue("f");
 
-    System.out.println("Queue: ");
+    System.out.print("Queue: ");
     for (String i : q) {
       System.out.print(i + " ");
     }
@@ -32,7 +32,7 @@ public class Exercise6 {
       stack.push(q.dequeue());
     }
 
-    System.out.println("Stack: ");
+    System.out.print("Stack: ");
     for (String i : stack) {
       System.out.print(i + " ");
     }
@@ -42,7 +42,7 @@ public class Exercise6 {
       q.enqueue(stack.pop());
     }
 
-    System.out.println("Queue: ");
+    System.out.print("Queue: ");
     for (String i : q) {
       System.out.print(i + " ");
     }
