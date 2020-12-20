@@ -7,44 +7,29 @@ import java.util.Iterator;
  * @projectName Robert-Sedgewick-and-Kevin-Wayne-Algorithms
  * @package fundamentals.bagsQueuesStacks
  * @date 12/20/20
- * @comment: Develop a class ResizingArrayQueueOfStrings that implements the queue abstraction with
- * a fixed-size array, and then extend your implementation to use array resizing to remove the size
- * restriction.
+ * @comment: Write a Queue client that takes a command-line argument k and prints the kth from the
+ * last string found on standard input (assuming that standard input has k or more strings).
  */
-public class Exercise14 {
+public class Exercise15 {
 
   public static void main(String[] args) {
     ResizingArrayQueueOfStrings queue = new ResizingArrayQueueOfStrings(5);
+    int k = Integer.parseInt(args[0]); // 5
 
-    queue.enQueue("a");
-    queue.enQueue("b");
-    queue.enQueue("c");
-    queue.enQueue("d");
-    queue.enQueue("e");
-    queue.enQueue("f");
+    String input = args[1]; // 1 2 3 4 5 6 7 8 9 10 11 12
+    String[] stringsInput = input.split(" ");
 
-    System.out.print("Queue: ");
-    for (String str : queue) {
-      System.out.print(str + " ");
-    }
-    System.out.println();
-    System.out.println("Size: " + queue.size());
-    System.out.println("Dequeue: " + queue.deQueue());
-    System.out.println("Size: " + queue.size());
-
-    System.out.print("Queue: ");
-    for (String str : queue) {
-      System.out.print(str + " ");
+    for (String string : stringsInput) {
+      queue.enQueue(string);
     }
 
-    System.out.println();
-    System.out.println("Size: " + queue.size());
-    queue.enQueue("g");
-    System.out.println("Size: " + queue.size());
-
-    System.out.print("Queue: ");
+    int size = queue.size();
+    int count = 0;
     for (String str : queue) {
-      System.out.print(str + " ");
+      if (count++ == size - k) {
+        System.out.println("Kth element from last is: " + str); // 8
+        break;
+      }
     }
   }
 
