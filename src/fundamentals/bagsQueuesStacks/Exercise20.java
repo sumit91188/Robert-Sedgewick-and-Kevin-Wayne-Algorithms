@@ -7,8 +7,8 @@ import java.util.Iterator;
  * @projectName Robert-Sedgewick-and-Kevin-Wayne-Algorithms
  * @package fundamentals.bagsQueuesStacks
  * @date 12/21/20
- * @comment: Give a code fragment that removes the last node in a linked list whose first node is
- * first.
+ * @comment: Write a method delete() that takes an int argument k and deletes the kth element in a
+ * linked list, if it exists.
  */
 public class Exercise20 {
 
