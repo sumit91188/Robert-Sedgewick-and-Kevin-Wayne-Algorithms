@@ -7,7 +7,7 @@ import java.util.Iterator;
  * @projectName Robert-Sedgewick-and-Kevin-Wayne-Algorithms
  * @package fundamentals.bagsQueuesStacks
  * @date 12/24/20
- * @comment:
+ * @comment: Develop a recursive solution to the previous question.
  */
 public class Exercise28 {
 
