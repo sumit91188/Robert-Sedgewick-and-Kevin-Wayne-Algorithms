@@ -16,7 +16,7 @@ public class SinglyLinkedList<Item> implements Iterable<Item> {
   private int numOfElms;
 
   public boolean isEmpty() {
-    return firstNode == null;  // or numOfElms == 0;
+    return numOfElms == 0;  // or numOfElms == 0;
   }
 
   public int size() {
