@@ -9,13 +9,10 @@ import java.util.Iterator;
  * @projectName Robert-Sedgewick-and-Kevin-Wayne-Algorithms
  * @package fundamentals.bagsQueuesStacks
  * @date 1/6/21
- * @comment: Write a class RandomQueue that implements this API. Hint : Use an array representation
- * (with resizing). To remove an item, swap one at a random position (indexed 0 through N-1) with
- * the one at the last position (index N-1). Then delete and return the last object, as in
- * ResizingArrayStack. Write a client that deals bridge hands (13 cards each) using
- * RandomQueue<Card>.
+ * @comment: Random iterator. Write an iterator for RandomQueue<Item> from the previous exercise
+ * that returns the items in random order.
  */
-public class Exercise35 {
+public class Exercise36 {
 
   public static void main(String[] args) {
     RandomQueue<Integer> queue = new RandomQueue<>();
@@ -104,21 +101,40 @@ public class Exercise35 {
 
     @Override
     public Iterator<T> iterator() {
+      return new RandomQueueIterator();
+    }
 
-      return new Iterator<T>() {
+    private class RandomQueueIterator implements Iterator<T> {
 
-        private int iteratorIndex;
+      T[] iteratorArray;
+      int iteratorIndex;
 
-        @Override
-        public boolean hasNext() {
-          return iteratorIndex < numOfElms;
+      public RandomQueueIterator() {
+        iteratorIndex = numOfElms;
+        iteratorArray = (T[]) new Object[numOfElms];
+
+        for (int i = 0; i < numOfElms; i++) {
+          iteratorArray[i] = array[i];
         }
+      }
 
-        @Override
-        public T next() {
-          return array[iteratorIndex++];
+      @Override
+      public boolean hasNext() {
+        return iteratorIndex > 0;
+      }
+
+      @Override
+      public T next() {
+        T elem = null;
+        if (hasNext()) {
+          int random = StdRandom.uniform(iteratorIndex);
+          elem = iteratorArray[random];
+          iteratorArray[random] = iteratorArray[iteratorIndex - 1];
+          iteratorArray[iteratorIndex - 1] = null;
+          iteratorIndex--;
         }
-      };
+        return elem;
+      }
     }
   }
 }
