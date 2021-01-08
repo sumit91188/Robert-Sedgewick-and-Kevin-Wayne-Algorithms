@@ -56,7 +56,7 @@ public class ArrayQueue<T> implements Queue<T> {
 
     @Override
     public void offer(T elem) {
-        if (index > maxElms) {
+        if (index == maxElms) {
             increaseCapacity();
         }
         array[index++] = elem;
