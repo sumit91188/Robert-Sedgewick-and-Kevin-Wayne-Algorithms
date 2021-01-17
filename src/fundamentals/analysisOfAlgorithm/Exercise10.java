@@ -7,7 +7,8 @@ import edu.princeton.cs.algs4.StdOut;
  * @projectName Robert-Sedgewick-and-Kevin-Wayne-Algorithms
  * @package fundamentals.analysisOfAlgorithm
  * @date 1/16/21
- * @comment:
+ * @comment: Modify binary search so that it always returns the element with the smallest index that
+ * matches the search element (and still guarantees logarithmic running time).
  */
 public class Exercise10 {
 
