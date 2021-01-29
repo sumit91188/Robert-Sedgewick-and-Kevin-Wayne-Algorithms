@@ -15,18 +15,18 @@ import java.util.Arrays;
 public class Exercise16 {
 
   public static void main(String[] args) {
-    int[] array = {0, 2, 3, 5, 4, 6, 1, 9, 13, 15, 20};
-    int[] closestPair = findClosestPair(array);
+    double[] array = {0, 2.9, 3, -5, -4, 6, 1, 9, 13, 15, -20};
+    double[] closestPair = findClosestPair(array);
 
     System.out.println("Closest pair is: " + closestPair[0] + ", " + closestPair[1]);
   }
 
-  private static int[] findClosestPair(int[] array) {
-    int[] pair = new int[2];
+  private static double[] findClosestPair(double[] array) {
+    double[] pair = new double[2];
     Arrays.sort(array);
-    int absDiff = Integer.MAX_VALUE;
+    double absDiff = Integer.MAX_VALUE;
     for (int i = 1; i < array.length; i++) {
-      int currentDiff = Math.abs(array[i] - array[i - 1]);
+      double currentDiff = Math.abs(array[i] - array[i - 1]);
       if (currentDiff < absDiff) {
         pair[0] = array[i - 1];
         pair[1] = array[i];
