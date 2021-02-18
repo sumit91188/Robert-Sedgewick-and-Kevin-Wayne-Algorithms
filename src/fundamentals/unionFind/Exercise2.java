@@ -6,14 +6,14 @@ import fundamentals.unionFind.util.UnionFind;
  * @author sumitdeo
  * @projectName Robert-Sedgewick-and-Kevin-Wayne-Algorithms
  * @package fundamentals.unionFind
- * @date 2/5/21
- * @comment: Show the contents of the id[] array and the number of times the array is accessed for
- * each input pair when you use quick-find for the sequence 9-0 3-4 5-8 7-2 2-1 5-7 0-3 4-2.
+ * @date 2/16/21
+ * @comment: Do Exercise 1.5.1, but use quick-union (page 224). In addition, draw the forest of
+ * trees represented by the id[] array after each input pair is processed.
  */
-public class Exercise1 {
+public class Exercise2 {
 
   public static void main(String[] args) {
-    QuickFind uf = new QuickFind(10);
+    QuickUnion uf = new QuickUnion(10);
 
     uf.union(9, 0);
     System.out.println(uf.getArrayAccessCount());
@@ -56,13 +56,13 @@ public class Exercise1 {
     System.out.println();
   }
 
-  public static class QuickFind implements UnionFind {
+  public static class QuickUnion implements UnionFind {
 
     private final int[] id;
     private int count;
     private int arrayAccessCount;
 
-    public QuickFind(int N) {
+    public QuickUnion(int N) {
       count = N;
       id = new int[count];
       for (int i = 0; i < count; i++) {
@@ -80,20 +80,31 @@ public class Exercise1 {
         return;
       }
 
-      for (int i = 0; i < id.length; i++) {
-        arrayAccessCount++;
-        if (id[i] == pId) {
-          arrayAccessCount++;
-          id[i] = qId;
-        }
-      }
+      arrayAccessCount++;
+      id[pId] = qId;
       count--;
     }
 
     @Override
     public int find(int p) {
+      while (p != id[p]) {
+        arrayAccessCount++;
+        p = id[p];
+        arrayAccessCount++;
+      }
       arrayAccessCount++;
-      return id[p];
+
+      return p;
+    }
+
+    @Override
+    public boolean connected(int p, int q) {
+      return find(p) == find(q);
+    }
+
+    @Override
+    public int count() {
+      return count;
     }
 
     public int getArrayAccessCount() {
@@ -110,50 +121,5 @@ public class Exercise1 {
       }
       System.out.println();
     }
-
-    @Override
-    public boolean connected(int p, int q) {
-      return find(p) == find(q);
-    }
-
-    @Override
-    public int count() {
-      return count;
-    }
   }
 }
-
-/*
-Solution:
-    13
-    0 1 2 3 4 5 6 7 8 9
-    0 1 2 3 4 5 6 7 8 0
-
-    13
-    0 1 2 3 4 5 6 7 8 9
-    0 1 2 4 4 5 6 7 8 0
-
-    13
-    0 1 2 3 4 5 6 7 8 9
-    0 1 2 4 4 8 6 7 8 0
-
-    13
-    0 1 2 3 4 5 6 7 8 9
-    0 1 2 4 4 8 6 2 8 0
-
-    14
-    0 1 2 3 4 5 6 7 8 9
-    0 1 1 4 4 8 6 1 8 0
-
-    14
-    0 1 2 3 4 5 6 7 8 9
-    0 1 1 4 4 1 6 1 1 0
-
-    14
-    0 1 2 3 4 5 6 7 8 9
-    4 1 1 4 4 1 6 1 1 4
-
-    16
-    0 1 2 3 4 5 6 7 8 9
-    1 1 1 1 1 1 6 1 1 1
-*/
